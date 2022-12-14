@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalDatabase.Views.StudentsPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout.Padding>
+                <OnPlatform 
+                    x:TypeArguments="Thickness"
+                    Android="20"
+                    iOS="50"/>
+            </StackLayout.Padding>
+            <StackLayout Orientation="Horizontal">
+                
+                <Button Text="Add"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand" 
+                    Command="{Binding NeWStudentCommand}"                             
+                         />
+                <Button Text="List"                  
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand" 
+                    Command="{Binding LoadStudentsCommand}"                             
+                         />
+
+               
+                
+            </StackLayout>
+            <ListView
+                ItemsSource="{Binding Students}"
+                x:Name="ListStudents"
+                HasUnevenRows="True"            
+                SeparatorVisibility="None">
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="True"
+                                Margin="3">
+                                <StackLayout
+                                    Orientation="Vertical">
+                                     
+                                    <Grid
+                                        VerticalOptions="CenterAndExpand" 
+                                        x:Name="ItemStudent">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                           
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Text="Nombre: "
+                                            FontAttributes="Bold"/>
+
+                                        <Label 
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding FirstName}"/>
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Text="Estado: "
+                                            FontAttributes="Bold"/>
+
+                                        <Label 
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="{Binding Aprobado}"/>
+                                        <Button Text="Delete"    
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="CenterAndExpand" 
+                                            BindingContext="{Binding Source={x:Reference ListStudents}, 
+                                            Path=BindingContext}"
+                                            Command="{Binding DeleteStudentCommand}"
+                                            CommandParameter="{Binding Source={x:Reference ItemStudent}, 
+                                            Path=BindingContext}"/>
+                                        <Button Text="Edit"    
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="CenterAndExpand" 
+                                            BindingContext="{Binding Source={x:Reference ListStudents}, 
+                                            Path=BindingContext}"
+                                            Command="{Binding EditStudentCommand}"
+                                            CommandParameter="{Binding Source={x:Reference ItemStudent}, 
+                                            Path=BindingContext}"/>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

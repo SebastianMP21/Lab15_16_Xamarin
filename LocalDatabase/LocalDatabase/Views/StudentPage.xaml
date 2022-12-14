@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalDatabase.Views.StudentPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.Padding>
+                <OnPlatform 
+                    x:TypeArguments="Thickness"
+                    Android="20"
+                    iOS="50"/>
+            </StackLayout.Padding>
+            <Label
+                Text="First Name"/>
+            <Entry 
+                Placeholder="First Name"
+                Text="{Binding FirstName}"/>
+
+            <Label
+                Text="Last Name"/>
+            <Entry 
+                Placeholder="Last Name"
+                Text="{Binding LastName }"/>
+
+            <Label
+                Text="Fecha de Nacimiento"/>
+            <Entry 
+                Placeholder="Fecha de Nacimiento"
+                Text="{Binding FechaNacimiento}"/>
+            
+            <Label
+                Text="Nota"/>
+            <Entry 
+                Placeholder="Nota"
+                Text="{Binding Nota}"/>
+
+           
+
+            <Button
+                Text="{Binding Title}"
+                Command="{Binding CreateCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
